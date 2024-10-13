@@ -49,4 +49,5 @@ service-account.pem
 service-account-csr.json
 *.swp
 .idea/
-terraform/.terraform/
+terraform/.terraform/*
+terraform/terraform.tf
