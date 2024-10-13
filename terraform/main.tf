@@ -68,13 +68,13 @@ resource "azurerm_network_interface" "node_1_nic" {
 
 # Create a virtual machine for the jumpbox (administration host)
 resource "azurerm_linux_virtual_machine" "jumpbox" {
-  name                = "jumpbox"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  name                  = "jumpbox"
+  location              = azurerm_resource_group.rg.location
+  resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.jumpbox_nic.id]
-  size                = "Standard_A1_v2"  # 1 CPU, 512MB RAM
+  size                  = "Standard_A1_v2" # 1 CPU, 512MB RAM
 
-  admin_username      = "adminuser"
+  admin_username = "adminuser"
   admin_ssh_key {
     username   = "adminuser"
     public_key = tls_private_key.linux-key.public_key_openssh
@@ -83,7 +83,7 @@ resource "azurerm_linux_virtual_machine" "jumpbox" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    disk_size_gb         = 10  # 10GB storage
+    disk_size_gb         = 10 # 10GB storage
   }
 
   source_image_reference {
@@ -96,13 +96,13 @@ resource "azurerm_linux_virtual_machine" "jumpbox" {
 
 # Create a virtual machine for the Kubernetes server
 resource "azurerm_linux_virtual_machine" "server" {
-  name                = "k8s-server"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  name                  = "k8s-server"
+  location              = azurerm_resource_group.rg.location
+  resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.server_nic.id]
-  size                = "Standard_A1_v2"  # 1 CPU, 2GB RAM
+  size                  = "Standard_A1_v2" # 1 CPU, 2GB RAM
 
-  admin_username      = "adminuser"
+  admin_username = "adminuser"
   admin_ssh_key {
     username   = "adminuser"
     public_key = tls_private_key.linux-key.public_key_openssh
@@ -111,7 +111,7 @@ resource "azurerm_linux_virtual_machine" "server" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    disk_size_gb         = 20  # 20GB storage
+    disk_size_gb         = 20 # 20GB storage
   }
 
   source_image_reference {
@@ -124,13 +124,13 @@ resource "azurerm_linux_virtual_machine" "server" {
 
 # Create a virtual machine for the first Kubernetes worker node (node-0)
 resource "azurerm_linux_virtual_machine" "node_0" {
-  name                = "k8s-node-0"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  name                  = "k8s-node-0"
+  location              = azurerm_resource_group.rg.location
+  resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.node_0_nic.id]
-  size                = "Standard_A1_v2"  # 1 CPU, 2GB RAM
+  size                  = "Standard_A1_v2" # 1 CPU, 2GB RAM
 
-  admin_username      = "adminuser"
+  admin_username = "adminuser"
   admin_ssh_key {
     username   = "adminuser"
     public_key = tls_private_key.linux-key.public_key_openssh
@@ -139,7 +139,7 @@ resource "azurerm_linux_virtual_machine" "node_0" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    disk_size_gb         = 20  # 20GB storage
+    disk_size_gb         = 20 # 20GB storage
   }
 
   source_image_reference {
@@ -152,13 +152,13 @@ resource "azurerm_linux_virtual_machine" "node_0" {
 
 # Create a virtual machine for the second Kubernetes worker node (node-1)
 resource "azurerm_linux_virtual_machine" "node_1" {
-  name                = "k8s-node-1"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  name                  = "k8s-node-1"
+  location              = azurerm_resource_group.rg.location
+  resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.node_1_nic.id]
-  size                = "Standard_A1_v2"  # 1 CPU, 2GB RAM
+  size                  = "Standard_A1_v2" # 1 CPU, 2GB RAM
 
-  admin_username      = "adminuser"
+  admin_username = "adminuser"
   admin_ssh_key {
     username   = "adminuser"
     public_key = tls_private_key.linux-key.public_key_openssh
@@ -167,7 +167,7 @@ resource "azurerm_linux_virtual_machine" "node_1" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    disk_size_gb         = 20  # 20GB storage
+    disk_size_gb         = 20 # 20GB storage
   }
 
   source_image_reference {
